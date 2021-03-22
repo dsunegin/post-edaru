@@ -1,0 +1,27 @@
+<img alt="Russian rouble RUB exchange rates on {{ dateLoc }}" src="{{ imgsrc }}">
+<p>Central Bank of the Russian Federation on {{ dateloc }} sets the following official Rouble exchange rates:</p>
+
+{% for feature in features %}{% if feature.code=='USD/RUB' or feature.code=='EUR/RUB' or feature.code=='GBP/RUB'
+or feature.code=='RUB/RUB' %}<p>{{ feature.code }} ({{ feature.currency }}) {{ feature.rate }}</p> {% endif %}{% endfor %}
+
+<table class="table-finance">
+<thead>
+<tr>
+<th>Code</th>
+<th>Amount</th>
+<th>Rate</th>
+<th class="mob_hidden">Date</th>
+<th class="mob_desksm_hidden">Currency</th>
+</tr>
+</thead>
+<tbody>
+{% for feature in features %}
+<tr>
+<td>{{ feature.code }}</td><td>{{ feature.amount|default('1')}}</td><td>{{ feature.rate }}</td>
+<td class="mob_hidden">{{ dateloc2 }}</td><td class="mob_desksm_hidden">{{ feature.currency | upper }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<p>Bbabo.net experts focusing on changes in Forex market</p>

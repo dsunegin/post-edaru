@@ -1,0 +1,42 @@
+{
+  "name": "post-edaru",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm.cmd run compile",
+    "pretest": "npm.cmd run compile",
+    "posttest": "npm.cmd run lint",
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "Denis Sunegin <denis.sunegin@email.com> (https://github.com/dsunegin)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=11.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.11.2",
+    "gts": "^3.1.0",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "crc": "^3.8.0",
+    "date-fns": "^2.19.0",
+    "dotenv": "^8.2.0",
+    "fs": "^0.0.1-security",
+    "mysql2": "^2.2.5",
+    "node-cron": "^3.0.0",
+    "nunjucks": "^3.2.3",
+    "path": "^0.12.7",
+    "slugify": "^1.4.7",
+    "winston": "^3.3.3"
+  }
+}
