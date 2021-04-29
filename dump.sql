@@ -1,0 +1,1 @@
+mysqldump -uroot -pjurbattabruj2016 recipe > recipe.sql

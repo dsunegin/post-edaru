@@ -34,8 +34,10 @@
     "fs": "^0.0.1-security",
     "mysql2": "^2.2.5",
     "node-cron": "^3.0.0",
+    "numeralize-rus-ukr": "^1.0.7",
     "nunjucks": "^3.2.3",
     "path": "^0.12.7",
+    "pretty-letter": "^1.0.15",
     "slugify": "^1.4.7",
     "winston": "^3.3.3"
   }

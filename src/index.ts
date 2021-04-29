@@ -1,4 +1,7 @@
 import * as assets from './assets/assets';
+const pl = require('pretty-letter');
+const numeralize = require('numeralize-rus-ukr').default;
+
 const console = require('./console');
 const mysql = require('mysql2');
 const {crc16} = require('crc');
@@ -8,9 +11,7 @@ const nunjucks = require('nunjucks');
 const path = require('path');
 const format = require('date-fns/format');
 
-const WEBSITE_ROOT_PATH = process.env.WEBSITE_ROOT_PATH;
-const PERSON_PATH = process.env.PERSON_PATH;
-const person = process.env.PERSON;
+
 
 const Categories = [
   {langDB: 'uk-UA', category: [103], datefnLocale: 'uk', pn: 0},
@@ -26,6 +27,10 @@ const Categories = [
 if (envconf.error) {
   throw envconf.error;
 } // ERROR if Config .env file is missing
+
+const WEBSITE_ROOT_PATH = process.env.WEBSITE_ROOT_PATH;
+const PERSON_PATH = process.env.PERSON_PATH;
+const person = process.env.PERSON ? process.env.PERSON : 'chef-baking';
 
 const connectionRECIPE = mysql
   .createConnection({
@@ -77,6 +82,12 @@ const main = async (): Promise<string> => {
       rcp.instructions = JSON.parse(rcp.recipeInstructions);
       rcp.nutrition = JSON.parse(rcp.nutrition);
       console.log(rcp);
+        const ingredientsCount = rcp.ingredients.length;
+        const ingredientsCountMsg = pl(ingredientsCount, ['ингредиент', 'ингредиента', 'ингредиентов']); // imagine "1 комментарий", "2 комментария", "5 комментариев"
+
+      rcp.ingredientsCount = rcp.ingredients.length;
+      rcp.ingredientsCountTxt = numeralize(Number.parseInt(rcp.ingredients.length));
+      rcp.ingredientsCountMsg = ingredientsCountMsg;
 
       const pn = assets.getRandomIntInclusive(0, icat.pn);
 
